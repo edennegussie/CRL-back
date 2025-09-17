@@ -1,6 +1,6 @@
-# Crime Resource Locator (CRL) Backend
+# Crisis Resource Locator (CRL) Backend
 
-A Node.js Express API backend with PstgresSQL for the Crime Resource Locator application, providing access to crime-related support resources and services.
+A Node.js Express API backend with PstgresSQL for the Crisis Resource Locator application, providing access to crisis-related support resources and services.
 
 ## 🚀 Features
 
@@ -146,4 +146,4 @@ crl-back/
 ```
 ---
 
-**Crime Resource Locator Backend** - Providing access to critical support resources when they're needed most.
+**Crisis Resource Locator Backend** - Providing access to critical support resources when they're needed most.
