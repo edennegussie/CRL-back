@@ -143,34 +143,6 @@ crl-back/
 | `npm start` | Start the server in production mode |
 | `npm run dev` | Start the server in development mode with hot reload |
 
-
-## 🌐 CORS Configuration
-
-The API is configured to accept cross-origin requests from any origin. For production, you may want to restrict this to specific domains.
-
-## 🚨 Error Handling
-
-The API includes comprehensive error handling:
-
-- **400 Bad Request**: Invalid input parameters
-- **404 Not Found**: Resource not found
-- **500 Internal Server Error**: Server or database errors
-
-All error responses follow this format:
-```json
-{
-  "success": false,
-  "error": "Error description",
-  "message": "Detailed error message"
-}
-```
-## 🚀 Deployment
-
-### Environment Variables for Production
-```bash
-DATABASE_URL="postgresql://username:password@your-db-host:5432/crl_database?schema=public"
-PORT=3000
-NODE_ENV=development
 ```
 ---
 
