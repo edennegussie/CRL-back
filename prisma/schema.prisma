@@ -15,11 +15,14 @@ datasource db {
 }
 
 model Resource {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  url         String?
-  category    String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  name          String
+  category      String
+  location      String
+  phone         String?
+  website       String?
+  available24h  Boolean  @default(false)
+  description   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
