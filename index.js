@@ -20,13 +20,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK',
-    timestamp: new Date().toISOString()
-  });
-});
-
 // Resources routes
 app.get('/resources', async (req, res) => {
   try {
@@ -113,7 +106,6 @@ app.get('/resources/:id', async (req, res) => {
 // Start server
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log(`Health check: http://localhost:${PORT}/health`);
   console.log(`Resources API: http://localhost:${PORT}/resources`);
 });
 
