@@ -1,6 +1,6 @@
 # Crime Resource Locator (CRL) Backend
 
-A Node.js Express API backend for the Crime Resource Locator application, providing access to crime-related support resources and services.
+A Node.js Express API backend with PstgresSQL for the Crime Resource Locator application, providing access to crime-related support resources and services.
 
 ## 🚀 Features
 
@@ -9,17 +9,9 @@ A Node.js Express API backend for the Crime Resource Locator application, provid
 - **CORS Support** for cross-origin requests
 - **Resource Filtering** by location and category
 
-## 📋 Prerequisites
-
-Before running this application, make sure you have:
-
-- **Node.js** (v16 or higher)
-- **npm** (v8 or higher)
-- **PostgreSQL** database
-- **Git** (for cloning the repository)
-
 ## AI USAGE
 - used Cursor AI for pair programming and ChatGPT for coding assistance and bug resolution.
+- it allowed for quick development, as time was of the essence.
 
 ## 🛠️ Installation for local development
 
@@ -46,14 +38,10 @@ Before running this application, make sure you have:
 
 4. **Set up the database**
    ```bash
-   # Generate Prisma client
-   npm run db:generate
-   
-   # Push schema to database
-   npm run db:push
-   
-   # Seed the database with initial data
-   npm run db:seed
+    npx prisma init
+    npx prisma generate
+    npx prisma migrate dev --name init 
+    npx prisma db seed
    ```
 
 ## 🚀 Running the Application
@@ -88,29 +76,7 @@ model Resource {
   updatedAt     DateTime @updatedAt
 }
 ```
-
-## 🔌 API Endpoints
-
-### Base URL
-```
-http://localhost:3000
-```
-
-### Endpoints
-
-#### 1. Health Check
-```http
-GET /health
-```
-**Response:**
-```json
-{
-  "status": "OK",
-  "timestamp": "2024-01-15T10:30:00.000Z"
-}
-```
-
-#### 2. Get All Resources
+#### 1. Get All Resources
 ```http
 GET /resources
 ```
@@ -154,25 +120,6 @@ GET /resources?location=California&category=mental-health
 ```
 
 
-## 🗄️ Database Commands
-
-```bash
-# Generate Prisma client
-npm run db:generate
-
-# Push schema changes to database
-npm run db:push
-
-# Create and run migrations
-npm run db:migrate
-
-# Open Prisma Studio (database GUI)
-npm run db:studio
-
-# Seed database with initial data
-npm run db:seed
-```
-
 ## 🏗️ Project Structure
 
 ```
@@ -195,11 +142,7 @@ crl-back/
 |--------|-------------|
 | `npm start` | Start the server in production mode |
 | `npm run dev` | Start the server in development mode with hot reload |
-| `npm run db:generate` | Generate Prisma client |
-| `npm run db:push` | Push schema to database |
-| `npm run db:migrate` | Create and run migrations |
-| `npm run db:studio` | Open Prisma Studio |
-| `npm run db:seed` | Seed database with initial data |
+
 
 ## 🌐 CORS Configuration
 
@@ -221,52 +164,14 @@ All error responses follow this format:
   "message": "Detailed error message"
 }
 ```
-
-## 🔒 Security Considerations
-
-- Environment variables are used for sensitive configuration
-- Database credentials should be kept secure
-- Consider implementing authentication for production use
-- Validate and sanitize all input data
-
 ## 🚀 Deployment
 
 ### Environment Variables for Production
 ```bash
 DATABASE_URL="postgresql://username:password@your-db-host:5432/crl_database?schema=public"
 PORT=3000
-NODE_ENV=production
+NODE_ENV=development
 ```
-
-### Docker Deployment (Optional)
-You can containerize this application using Docker. Create a `Dockerfile` and use the provided scripts.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
-
-For support and questions:
-- Create an issue in the repository
-- Check the API documentation above
-- Review the Prisma documentation for database-related questions
-
-## 🔄 Version History
-
-- **v1.0.0** - Initial release with basic CRUD operations and filtering
-- Basic resource management
-- Location and category filtering
-- 24/7 availability tracking
-
 ---
 
 **Crime Resource Locator Backend** - Providing access to critical support resources when they're needed most.
