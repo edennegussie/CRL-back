@@ -8,10 +8,6 @@ A Node.js Express API backend for the Crime Resource Locator application, provid
 - **Database Integration** using Prisma ORM with PostgreSQL
 - **CORS Support** for cross-origin requests
 - **Resource Filtering** by location and category
-- **24/7 Availability Tracking** for emergency resources
-- **Automatic API Documentation** through structured responses
-- **Graceful Shutdown** handling
-- **Development Tools** with Nodemon for hot reloading
 
 ## 📋 Prerequisites
 
@@ -21,6 +17,9 @@ Before running this application, make sure you have:
 - **npm** (v8 or higher)
 - **PostgreSQL** database
 - **Git** (for cloning the repository)
+
+## AI USAGE
+- used Cursor AI for pair programming and ChatGPT for coding assistance and bug resolution.
 
 ## 🛠️ Installation for local development
 
