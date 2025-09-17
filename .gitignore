@@ -93,3 +93,4 @@ Thumbs.db
 # Logs
 logs
 *.log
+/generated/prisma
