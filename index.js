@@ -30,15 +30,40 @@ app.get('/health', (req, res) => {
 // Resources routes
 app.get('/resources', async (req, res) => {
   try {
+    const { location, category } = req.query;
+    
+    // Build where clause for filtering
+    const whereClause = {};
+    
+    if (location) {
+      whereClause.location = {
+        contains: location,
+        mode: 'insensitive' // Case-insensitive search
+      };
+    }
+    
+    if (category) {
+      whereClause.category = {
+        contains: category,
+        mode: 'insensitive' // Case-insensitive search
+      };
+    }
+    
     const resources = await prisma.resource.findMany({
+      where: whereClause,
       orderBy: {
         createdAt: 'desc'
       }
     });
+    
     res.json({
       success: true,
       data: resources,
-      count: resources.length
+      count: resources.length,
+      filters: {
+        location: location || null,
+        category: category || null
+      }
     });
   } catch (error) {
     console.error('Error fetching resources:', error);
