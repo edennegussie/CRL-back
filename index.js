@@ -68,36 +68,6 @@ app.get('/resources', async (req, res) => {
   }
 });
 
-app.get('/resources/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const resource = await prisma.resource.findUnique({
-      where: {
-        id: parseInt(id)
-      }
-    });
-
-    if (!resource) {
-      return res.status(404).json({
-        success: false,
-        error: 'Resource not found'
-      });
-    }
-
-    res.json({
-      success: true,
-      data: resource
-    });
-  } catch (error) {
-    console.error('Error fetching resource:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to fetch resource',
-      message: error.message
-    });
-  }
-});
-
   // Catch-all for undefined routes (404)
   app.use((req, res, next) => {
     res.status(404).send(`Route "${req.originalUrl}" not found. Please enter the correct endpoint.`);
@@ -107,23 +77,4 @@ app.get('/resources/:id', async (req, res) => {
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Resources API: http://localhost:${PORT}/resources`);
-});
-
-// Graceful shutdown
-process.on('SIGINT', async () => {
-  console.log('Shutting down gracefully...');
-  await prisma.$disconnect();
-  server.close(() => {
-    console.log('Server closed');
-    process.exit(0);
-  });
-});
-
-process.on('SIGTERM', async () => {
-  console.log('SIGTERM received, shutting down gracefully...');
-  await prisma.$disconnect();
-  server.close(() => {
-    console.log('Server closed');
-    process.exit(0);
-  });
 });
