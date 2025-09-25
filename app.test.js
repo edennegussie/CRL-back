@@ -31,13 +31,6 @@ const createTestApp = () => {
     });
   });
 
-  app.get('/health', (req, res) => {
-    res.json({ 
-      status: 'OK',
-      timestamp: new Date().toISOString()
-    });
-  });
-
   app.get('/resources', async (req, res) => {
     try {
       const resources = await mockPrisma.resource.findMany({
@@ -69,13 +62,12 @@ describe('CRL Backend API', () => {
   });
 
   // Test 1: Health Check Endpoint
-  test('GET /health should return health status', async () => {
+  test('GET / should return status message', async () => {
     const response = await request(app)
-      .get('/health')
+      .get('/')
       .expect(200);
 
-    expect(response.body).toHaveProperty('status', 'OK');
-    expect(response.body).toHaveProperty('timestamp');
+    expect(response.body).toHaveProperty('status', 'Server is running successfully');
   });
 
   // Test 2: Resources Endpoint
